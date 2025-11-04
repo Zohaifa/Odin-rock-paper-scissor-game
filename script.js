@@ -63,3 +63,4 @@ let computerChoice = getComputerChoice();
 
 console.log("you choose " + humanChoice);
 console.log("computer chose " + computerChoice);
+console.log(playRound(humanChoice, computerChoice))
