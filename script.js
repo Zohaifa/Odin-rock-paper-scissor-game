@@ -58,9 +58,20 @@ function playRound(humanChoice, computerChoice){
     }
 }
 
-let humanChoice = getHumanChoice();
-let computerChoice = getComputerChoice();
+function oneRound(){
+    let humanChoice = getHumanChoice();
+    let computerChoice = getComputerChoice();
+    console.log("you choose " + humanChoice);
+    console.log("computer chose " + computerChoice);
+    console.log(playRound(humanChoice, computerChoice));
+}
 
-console.log("you choose " + humanChoice);
-console.log("computer chose " + computerChoice);
-console.log(playRound(humanChoice, computerChoice))
+oneRound();
+oneRound();
+oneRound();
+oneRound();
+oneRound();
+
+console.log(
+`Human Score: ${humanScore}
+Computer Score: ${computerScore}`);
