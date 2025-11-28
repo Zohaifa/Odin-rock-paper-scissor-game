@@ -3,74 +3,101 @@ let humanScore = 0;
 
 function getComputerChoice(){
     let randomNumber = Math.floor(Math.random()*10);
+    let result = "";
     switch(randomNumber%3){
         case 0:
-            return "rock";
+            result = "rock";
         case 1:
-            return "paper" ;
+            result = "paper" ;
         case 2:
-            return "scissors";
+            result = "scissor";
     }
-}
-
-function getHumanChoice(){
-    let humanChoice = prompt("Rock, Paper or Scissors?", "");
-    return humanChoice;
+    return result;
 }
 
 function playRound(humanChoice, computerChoice){
     humanChoice = humanChoice.toLowerCase();
+    let result = ""
     if(humanChoice === "rock"){
         switch(computerChoice){
             case "rock":
-                return "Oof! It's a draw";
+                result = "Oof! It's a draw";
             case "paper":
                 computerScore++;
-                return "Damn... you lost";
+                result = "Damn... you lost";
             case "scissor":
                 humanScore++;
-                return "Yay! you win!!"
+                result = "Yay! you win!!";
         }
     }
     else if(humanChoice === "paper"){
         switch(computerChoice){
             case "rock":
                 humanScore++;
-                return "Yay! you win!!"
+                result = "Yay! you win!!";
             case "paper":
-                return "Oof! It's a draw";
+                result = "Oof! It's a draw";
             case "scissor":
                 computerScore++;
-                return "Damn... you lost";
+                result = "Damn... you lost";
         }
     }
     else{
         switch(computerChoice){
             case "rock":
                 computerScore++;
-                return "Damn... you lost";
+                result = "Damn... you lost";
             case "paper":
                 humanScore++;
-                return "Yay! you win!!"
+                result = "Yay! you win!!";
             case "scissor":
-                return "Oof! It's a draw";
+                result = "Oof! It's a draw";
         }
     }
+    const displayDiv = document.querySelector("#game-display");
+    displayDiv.innerHTML = "";
+    const humanChoicePara = document.createElement("p");
+    const computerChoicePara = document.createElement("p");
+    const resultPara = document.createElement("p");
+    humanChoicePara.innerText = `You chose ${humanChoice}`;
+    computerChoicePara.innerText = `Computer chose ${computerChoice}`;
+    resultPara.innerText = result;
+    displayDiv.appendChild(humanChoicePara);
+    displayDiv.appendChild(computerChoicePara);
+    displayDiv.appendChild(resultPara);
+    updateScore(humanChoice, computerChoice);
 }
 
-function oneRound(){
-    let humanChoice = getHumanChoice();
-    let computerChoice = getComputerChoice();
+function oneRound(humanChoice, computerChoice){
     console.log("you choose " + humanChoice);
     console.log("computer chose " + computerChoice);
     console.log(playRound(humanChoice, computerChoice));
 }
 
-oneRound();
-oneRound();
-oneRound();
-oneRound();
-oneRound();
+const rockBtn = document.querySelector("#rock");
+const paperBtn = document.querySelector("#paper");
+const scissorBtn = document.querySelector("#scissors");
+
+const body = document.querySelector("#container");
+//playing a round
+body.addEventListener("click", (e)=>{
+if(e.target == rockBtn){
+        oneRound("rock", getComputerChoice());
+    }
+    if(e.target == paper){
+        oneRound("paper", getComputerChoice());
+    }
+    if(e.target == scissorBtn){
+        oneRound("scissors", getComputerChoice());
+    }  
+});
+//updating score
+const scoreBox = document.querySelector('#score');
+
+function updateScore(humanChoice, computerChoice){
+        
+}
+
 
 console.log(
 `Human Score: ${humanScore}
