@@ -26,12 +26,15 @@ function playRound(humanChoice){
         switch(computerChoice){
             case "rock":
                 result = "Oof! It's a draw";
+                break;
             case "paper":
                 computerScore++;
                 result = "Damn... you lost";
+                break;
             case "scissor":
                 humanScore++;
                 result = "Yay! you win!!";
+                break;
         }
     }
     else if(humanChoice === "paper"){
@@ -39,11 +42,14 @@ function playRound(humanChoice){
             case "rock":
                 humanScore++;
                 result = "Yay! you win!!";
+                break;
             case "paper":
                 result = "Oof! It's a draw";
+                break;
             case "scissor":
                 computerScore++;
                 result = "Damn... you lost";
+                break;
         }
     }
     else{
@@ -51,11 +57,14 @@ function playRound(humanChoice){
             case "rock":
                 computerScore++;
                 result = "Damn... you lost";
+                break;
             case "paper":
                 humanScore++;
                 result = "Yay! you win!!";
+                break;
             case "scissor":
                 result = "Oof! It's a draw";
+                break;
         }
     }
     //display the game consequences
@@ -79,7 +88,12 @@ const rockBtn = document.querySelector("#rock");
 const paperBtn = document.querySelector("#paper");
 const scissorBtn = document.querySelector("#scissors");
 //playing a round
+let roundsNum = 0;
 body.addEventListener("click", (e)=>{
+    roundsNum++;
+    if(roundsNum>=5){
+        endGame();
+    }
     if(e.target == rockBtn){
         playRound("rock");
     }
@@ -96,6 +110,19 @@ function updateScore(humanChoice, computerChoice){
     scoreBox.innerHTML = 
     `<p>Human Score: ${humanScore}</p>
     <p>Computer Score: ${computerScore}</p>`
+}
+//ending game
+function endGame(){
+    const mainBody = document.querySelector("body");
+    if(computerScore>humanScore){
+        mainBody.innerHTML="<h1>Womp Womp Buddy. The Computer has won the game :')</h1>";
+    }
+    else if(humanScore>computerScore){
+        mainBody.innerHTML="<h1>Warrior... Be proud... You have beaten that demon robot</h1>";
+    }
+    else{
+        mainBody.innerHTML="<h1>The legendary battle ends in draw.... Such a shame..</h1>";
+    }
 }
 
 
