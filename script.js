@@ -7,15 +7,19 @@ function getComputerChoice(){
     switch(randomNumber%3){
         case 0:
             result = "rock";
+            break;
         case 1:
             result = "paper" ;
+            break;
         case 2:
             result = "scissor";
+            break;
     }
     return result;
 }
 
-function playRound(humanChoice, computerChoice){
+function playRound(humanChoice){
+    let computerChoice = getComputerChoice();
     humanChoice = humanChoice.toLowerCase();
     let result = ""
     if(humanChoice === "rock"){
@@ -54,6 +58,7 @@ function playRound(humanChoice, computerChoice){
                 result = "Oof! It's a draw";
         }
     }
+    //display the game consequences
     const displayDiv = document.querySelector("#game-display");
     displayDiv.innerHTML = "";
     const humanChoicePara = document.createElement("p");
@@ -65,37 +70,32 @@ function playRound(humanChoice, computerChoice){
     displayDiv.appendChild(humanChoicePara);
     displayDiv.appendChild(computerChoicePara);
     displayDiv.appendChild(resultPara);
-    updateScore(humanChoice, computerChoice);
+    updateScore();
 }
 
-function oneRound(humanChoice, computerChoice){
-    console.log("you choose " + humanChoice);
-    console.log("computer chose " + computerChoice);
-    console.log(playRound(humanChoice, computerChoice));
-}
+const body = document.querySelector("#container");
 
 const rockBtn = document.querySelector("#rock");
 const paperBtn = document.querySelector("#paper");
 const scissorBtn = document.querySelector("#scissors");
-
-const body = document.querySelector("#container");
 //playing a round
 body.addEventListener("click", (e)=>{
-if(e.target == rockBtn){
-        oneRound("rock", getComputerChoice());
+    if(e.target == rockBtn){
+        playRound("rock");
     }
-    if(e.target == paper){
-        oneRound("paper", getComputerChoice());
+    if(e.target == paperBtn){
+        playRound("paper");
     }
     if(e.target == scissorBtn){
-        oneRound("scissors", getComputerChoice());
+        playRound("scissors");
     }  
 });
 //updating score
-const scoreBox = document.querySelector('#score');
-
 function updateScore(humanChoice, computerChoice){
-        
+    const scoreBox = document.querySelector('#score');
+    scoreBox.innerHTML = 
+    `<p>Human Score: ${humanScore}</p>
+    <p>Computer Score: ${computerScore}</p>`
 }
 
 
