@@ -27,7 +27,7 @@ function playRound(humanChoice, computerChoice){
             case "paper":
                 computerScore++;
                 return "Damn... you lost";
-            case "scissor":
+            case "scissors":
                 humanScore++;
                 return "Yay! you win!!"
         }
@@ -39,7 +39,7 @@ function playRound(humanChoice, computerChoice){
                 return "Yay! you win!!"
             case "paper":
                 return "Oof! It's a draw";
-            case "scissor":
+            case "scissors":
                 computerScore++;
                 return "Damn... you lost";
         }
@@ -52,7 +52,7 @@ function playRound(humanChoice, computerChoice){
             case "paper":
                 humanScore++;
                 return "Yay! you win!!"
-            case "scissor":
+            case "scissors":
                 return "Oof! It's a draw";
         }
     }
